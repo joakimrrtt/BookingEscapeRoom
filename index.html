@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room Booking System</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "0BsvtBSjjA8bqtarF",
+            });
+        })();
+    </script>
+    <style>
+        /* Custom styles to match the theme */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0d0d0d;
+            color: white;
+        }
+
+        h1, h2 {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        h1 {
+            text-shadow: 0px 0px 8px #ff00ff, 0px 0px 16px #ff00ff;
+        }
+
+        h2 {
+            text-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #ff00ff;
+        }
+    
+        .cta-button {
+            animation: neon-glow 2s infinite alternate;
+            box-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #ff00ff;
+        }
+
+        .cta-button:hover:enabled {
+            background-color: #00ffff;
+            transform: scale(1.1);
+            box-shadow: 0px 0px 20px #00ffff, 0px 0px 40px #00ffff;
+        }
+
+        .cta-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @keyframes neon-glow {
+            from {
+                text-shadow: 0px 0px 8px #ff00ff, 0px 0px 16px #ff00ff;
+            }
+            to {
+                text-shadow: 0px 0px 12px #00ffff, 0px 0px 24px #00ffff;
+            }
+        }
+
+        /* Calendar and time styling */
+        #calendar {
+            display: none;
+            background-color: #1a1a1a;
+            border: 1px solid #ff00ff;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Hour grid styling */
+        #hourGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #hourGrid button {
+            transition: background-color 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="booking" class="container mx-auto py-12">
+        <h2 class="text-center text-3xl text-[#ff00ff] mb-8">Book Your Spot</h2>
+        <div class="flex justify-center mb-6">
+            <input type="text" id="nameInput" placeholder="Enter your name" class="bg-[#1a1a1a] text-white border border-gray-700 p-3 w-1/2 rounded-lg mr-4 focus:outline-none focus:ring-2 focus:ring-[#ff00ff]" />
+            <button onclick="SendMail()" id="addButton" class="ease-in duration-200 cta-button bg-[#ff00ff] text-white px-6 py-3 rounded-lg mr-4" disabled>Add to Queue</button>
+        </div>
+
+        <div id="calendar">
+            <p>Booking Calendar (Select a Date)</p>
+            <input type="date" id="datePicker" class="bg-[#1a1a1a] text-white border border-gray-700 p-3 rounded-lg w-1/2 mt-2" />
+        </div>
+
+        <div id="hourGrid" class="mt-4 flex flex-wrap justify-center gap-4"></div>
+
+        <ul id="queueList" class="space-y-4 font-bold text-center"></ul>
+
+        <!-- <button id="downloadButton" class="bg-green-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-green-600">Download Queue</button> -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
